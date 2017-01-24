@@ -46,7 +46,8 @@ public class ProgramaIndicador {
 
 		MiIndicador indicador = new MiIndicador();
 
-		int opcion,acumular=0,velocidadNueva=0, nulo,acumularDecre=0;
+		int opcion,acumular=0,velocidadNueva=0, nulo=0,acumularDecre=0;
+		
 		System.out.println("El valor inicial del indicador es: "+
 				indicador.dameNivel());
 
@@ -71,34 +72,35 @@ public class ProgramaIndicador {
 				indicador.upNivel(incremento=teclado.nextInt());
 				acumular+=incremento;
 				if (acumular<220){
-				System.out.println("El marcador está en: "+indicador.upNivel(acumular));
+				System.out.println("El marcador esta en: "+indicador.upNivel(acumular));
 				}
 				else
-					System.out.println("PELIGRO ESTÁ EXCEDIENDO LA VELOCIDAD DE 220: "+
-				"El marcador está en: "+ indicador.upNivel(acumular));
+					System.out.println("PELIGRO ESTAS EXCEDIENDO LA VELOCIDAD DE 220: "+
+				"El marcador esta en: "+ indicador.upNivel(acumular));
 				break;
 			case 3:
 				System.out.println("Cuanto desea decrementar? ");
 				int decremento;
 				indicador.downNivel(decremento=teclado.nextInt());
 				acumularDecre+=decremento;
-				nulo=acumular+velocidadNueva+indicador.dameNivel()-acumularDecre;
+				nulo=acumular+indicador.dameNivel()-acumularDecre;
 				if (nulo<0){
-					System.out.println("Lo máximo a decrementar es 0. No existen valores negativos");
-					System.out.println("Su nuevo valor para el marcador comienza en 0 de nuevo.");
+					System.out.println("Lo maximo a decrementar es 0. No existen valores negativos");
+					System.out.println("Su nuevo valor para el marcador comienza en "+indicador.dameNivel()+" (predeterminado) de nuevo.");
 					acumular=0;
-					velocidadNueva=0;
 					acumularDecre=0;
 					decremento=0;
 				}
 				else {
 					System.out.println(nulo);
 				}
-				
-				
 				break;
 				
+			case 4:
+				System.out.println("Su valor es: ");
+				System.out.println(indicador.dameNivel()+velocidadNueva+acumular-acumularDecre);
 				
+				break;
 
 
 
