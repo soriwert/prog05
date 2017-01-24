@@ -1,53 +1,112 @@
 package programaIndicador;
+import java.util.Scanner;
 
-import java.util.*;
+class MiIndicador{
 
-class Indicador {
+	private int nivel, nivelIncre, nivelDecre;
 
-	private int velocidad, pantallaHora, posicionAguja;
-
-	Indicador(){
-
-		velocidad=0;
-
-		pantallaHora=0;
-
+	public MiIndicador (){
+		nivel=10;
+		nivelIncre+=nivel;
+		nivelDecre-=nivel;
 	}
 
-	public int getvelocidadInicial(){
 
-		return velocidad;
-
+	public int upNivel(int nivelIncre){
+		
+		this.nivelIncre=nivelIncre;
+		nivelIncre+=nivel;
+		return nivelIncre;
+	}
+	public int downNivel(int nivelDecre){
+		this.nivelDecre=nivelDecre;
+		nivelDecre=nivel-nivelDecre;
+		return nivelDecre;
+	}
+	
+	public void setNivel (int valor){
+		this.nivel=valor;
+	}
+	public int dameNivel (){
+		return nivel;
 	}
 
-	public void setcambioVelocidad(int velocidad){
-
-		this.velocidad=velocidad;
-
+	public int dameNivelIncre(int nivelIncre){
+		this.nivelIncre=nivelIncre;
+		return nivelIncre;
 	}
 
 }
 
-public class ProgramaIndicador{
+public class ProgramaIndicador {
 
-	public static void main (String[] args){
-
+	public static void main(String[] args) {
+		// Crearemos el menú opcion;
 		Scanner teclado = new Scanner (System.in);
 
-		Indicador estadoInicial = new Indicador();
+		MiIndicador indicador = new MiIndicador();
 
-		System.out.println("La velocidad inicial del indicador es: " +
+		int opcion,acumular=0,velocidadNueva=0, nulo,acumularDecre=0;
+		System.out.println("El valor inicial del indicador es: "+
+				indicador.dameNivel());
 
-		estadoInicial.getvelocidadInicial());
+		do{
+			System.out.println("          MENU          ");
+			System.out.println("1. Establecer nivel");
+			System.out.println("2. Incrementar");
+			System.out.println("3. Decrementar");
+			System.out.println("4. Ver Nivel actual");
+			System.out.println("0. SALIR");
+			System.out.println("Elija una opcion: ");
+			opcion=teclado.nextInt();
 
-		Indicador estadoEnMarcha = new Indicador();
+			switch (opcion){
+			case 1:
+				System.out.println("Escriba la nueva velocidad");
+				indicador.setNivel(velocidadNueva=teclado.nextInt());
+				break;
+			case 2:
+				System.out.println("Cuanto desea incrementar? ");
+				int incremento;
+				indicador.upNivel(incremento=teclado.nextInt());
+				acumular+=incremento;
+				if (acumular<220){
+				System.out.println("El marcador está en: "+indicador.upNivel(acumular));
+				}
+				else
+					System.out.println("PELIGRO ESTÁ EXCEDIENDO LA VELOCIDAD DE 220: "+
+				"El marcador está en: "+ indicador.upNivel(acumular));
+				break;
+			case 3:
+				System.out.println("Cuanto desea decrementar? ");
+				int decremento;
+				indicador.downNivel(decremento=teclado.nextInt());
+				acumularDecre+=decremento;
+				nulo=acumular+velocidadNueva+indicador.dameNivel()-acumularDecre;
+				if (nulo<0){
+					System.out.println("Lo máximo a decrementar es 0. No existen valores negativos");
+					System.out.println("Su nuevo valor para el marcador comienza en 0 de nuevo.");
+					acumular=0;
+					velocidadNueva=0;
+					acumularDecre=0;
+					decremento=0;
+				}
+				else {
+					System.out.println(nulo);
+				}
+				
+				
+				break;
+				
+				
 
-		int nuevaVelocidad;
 
-		System.out.println("Escriba la nueva velocidad del indicador ");
 
-		estadoEnMarcha.setcambioVelocidad(teclado.nextInt());
+			}
+
+		} while (opcion!=0);
+
+
 
 	}
-
 }
