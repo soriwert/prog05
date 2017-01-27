@@ -1,14 +1,14 @@
 /*2)	Desarrollar un programa en Java que utilice una clase que se llame Hora con miembros de tipo int para hora, 
-minutos y segundos. Deberá tener un constructor para inicializar la hora a 0 o a una hora determinada 
-(hora, minutos, segundos).Se deberá poder sumar y restar horas, así como imprimir y leer una hora. El formato de 
-impresión y lectura será hh:mm:ss, todo en modo 24 horas. 
+minutos y segundos. Deberï¿½ tener un constructor para inicializar la hora a 0 o a una hora determinada 
+(hora, minutos, segundos).Se deberï¿½ poder sumar y restar horas, asï¿½ como imprimir y leer una hora. El formato de 
+impresiï¿½n y lectura serï¿½ hh:mm:ss, todo en modo 24 horas. 
 */
 package programaHora;
 import java.util.*;
 
 
 class Hora {
-	private int h,m,s;
+	private int h,m,s, hh=0, hh2=0, h2=0, sumahh, sumah=0;
 	String c="0";
 
 	public Hora (){
@@ -27,71 +27,132 @@ class Hora {
 	public void setSeg(int s){
 		this.s=s;	
 	}
-	public void setOperacion(int h, int m, int s){
-		this.h=h;
-		this.m=m;
-		this.s=s;
-	}
-	
-	public String getOperacion(int h, int m, int s){
-		this.h=h;
-		this.m=m;
-		this.s=s;
-		return ""+h+":"+m+":"+s+"";
-	}
 	public int getHora(){
 		return h;
 	}
-	
 	public int getMin(){
 		return m;
 	}
 	public int getSeg(){
 		return s;
 	}
+	public String getHoraNew(int hh, int h){
+		this.hh=hh;
+		this.h=h;
+		String Cero= ""+hh+""+h;
+		return Cero;
+	
 }
+	public void setHoraNew(int hh, int h) {
+	this.hh=hh;
+	this.h=h;
+}
+	
+
+	
+	
+	
+	
+	public void setSumahh(int hh2, int hh, int h2, int h) {
+	this.hh2=hh2;
+	this.hh=hh;
+	this.h2=h2;
+	this.h=h;
+	
+	}
+
+	public String getSumahh(int hh2, int hh, int h2, int h){
+		this.hh2=hh2;
+		this.hh=hh;
+		this.h2=h2;
+		this.h=h;
+		int sumahh=hh2+hh;
+		int sumah=h2+h;
+		if (sumahh< 0 || sumahh > 2 || sumah < 0 || sumah>9){
+			hh2=0;
+			hh=0;
+			h2=0;
+			h=0;
+			sumahh=0;
+			sumahh=0;
+			return "error, la hora supera las 24 o horas. La hora pasa a estar en "+sumahh+""+sumah;
+		}
+		else 
+		{
+			h=sumah;
+			hh=sumahh;
+			return ""+sumahh+""+sumah;
+		}
+	}
+
+
+}
+
+
+
+
+
 
 public class ProgramaHora {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner teclado = new Scanner(System.in);
-		int c=0, HoraUsu=0, MinUsu=0, SegUsu=0, opcion=0;
+		int c=0, HoraUsuhh=0,HoraUsuh=0, MinUsu=0, SegUsu=0, opcion=0, HoraUSumahh=0, HoraUSumah=0;
 		
 		
 		Hora miHora = new Hora();
 		
 		
 		do{
-			System.out.println("Menu \nElija una opción: \n1. Hora Predeterminada. \n2. Establecer hora. \n3. Sumar hora. \n4. Restar hora. "
+			System.out.println("Menu \nElija una opciï¿½n: \n1. Hora Predeterminada. "
+					+ "\n2. Establecer hora. \n3. Sumar hora. \n4. Restar hora. "
 					+"\n5. Imprimir hora. \n6. Leer hora. \n0. Salir");
 			opcion=teclado.nextInt();
 			switch (opcion){
 //hora predeterminada
 			case 1:
-				System.out.println("La hora inicial es: "+c+""+miHora.getHora()+":"+c+""+miHora.getMin()+":"+c+""+miHora.getSeg());	
+				System.out.println("La hora inicial es: "+miHora.getHoraNew(0,0)+":"
+									+c+""+miHora.getMin()+":"+c+""+miHora.getSeg());
+				
 				break;
 // Establecer hora
+				
 			case 2:
-				System.out.println("Escriba la hora: ");
-				HoraUsu=teclado.nextInt();
+				System.out.println("Escriba la hora (primerDÃ­gito intro segundoDigito): ");
+				miHora.setHoraNew(HoraUsuhh=teclado.nextInt(),HoraUsuh=teclado.nextInt());
+				
+				
+				
 				System.out.println("Escriba los minutos: ");
-				MinUsu=teclado.nextInt();
+				miHora.setMin(teclado.nextInt());
 				System.out.println("Escriba los Segundos");
-				SegUsu=teclado.nextInt();
+				miHora.setSeg(teclado.nextInt());
 				break;
+			
+			
+			
 			case 3:
-				System.out.print(miHora.getOperacion(HoraUsu, MinUsu, SegUsu));
+				
+				
+				System.out.println("Escriba la hora que desea sumar (primerDÃ­gito intro segundoDigito): ");
+				miHora.setSumahh(HoraUSumahh=teclado.nextInt(),HoraUsuhh, HoraUSumah=teclado.nextInt(), HoraUsuh);
+				System.out.println("La hora sumada es: "+miHora.getSumahh(HoraUSumahh,HoraUsuhh,HoraUSumah,HoraUsuh));
 				break;
+			
+			
 			case 4:
 				break;
+				
 			case 5:
+				System.out.println("La hora inicial ha cambiado a: "+miHora.getHoraNew(HoraUsuhh, HoraUsuh)+":"
+						+miHora.getMin()+":"+miHora.getSeg());
 				break;
 			case 6:
 				break;
 			}
 			if (opcion<0 || opcion>6){
-				System.out.println("Error, vuelva a escribir un número.");
+				System.out.println("Error, vuelva a escribir un nï¿½mero.");
 			}
 		}while(opcion != 0);
 		
