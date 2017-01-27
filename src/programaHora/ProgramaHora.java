@@ -8,7 +8,7 @@ import java.util.*;
 
 
 class Hora {
-	private int h,m,s, hh=0, hh2=0, h2=0, sumahh, sumah=0;
+	private int h,m,s; //, hh=0, hh2=0, h2=0, sumahh, sumah=0;
 	String c="0";
 
 	public Hora (){
@@ -19,12 +19,18 @@ class Hora {
 	}
 	
 	public void setHora(int h){
+		if (h < 0 || h > 23) {
+			System.out.println("ERROR");
+			return;
+		}
 		this.h=h;	
 	}
 	public void setMin(int m){
+		
 		this.m=m;	
 	}
 	public void setSeg(int s){
+		
 		this.s=s;	
 	}
 	public int getHora(){
