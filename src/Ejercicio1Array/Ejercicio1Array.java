@@ -5,11 +5,13 @@ class Array{
 	private int valorIni=10;
 	private int valorFin=-10;
 	private int []vector;
+	private int media=0;
 
 
 public Array (){
 	this.valorIni=valorIni;
 	this.valorFin=valorFin;
+	
 }
 
 
@@ -20,6 +22,14 @@ public void estableceVector(){
 	for(int i=0; i<vector.length; i++){
 		vector[i]=Aleatorio.nextInt(valorFin-valorIni+1)+valorIni;
 		System.out.println(vector[i]);
+	}
+}
+public void calculaMedia(){
+	int suma=0;
+	for(int i=0; i<vector.length; i++){
+		suma=vector.length+suma;
+		
+		
 	}
 }
 
