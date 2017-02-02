@@ -8,7 +8,7 @@ import java.util.*;
 
 
 class Hora {
-	private int hora,min,seg, ceroAux=0;
+	private int hora=0,min=0,seg=0, ceroAux=0;
 
 	public Hora (){		
 		this.hora=0;
@@ -25,7 +25,7 @@ class Hora {
 		if (HoraIni < 0 || HoraIni > 23) {
 			System.out.println("NUEVA HORA INCORRECTA.");
 			return;
-		} 
+		}
 		this.hora=HoraIni;
 	}
 	public void estableceMin(int MinIni){
@@ -44,22 +44,24 @@ class Hora {
 		this.seg=SegIni;
 		
 	}
+	
+	
 	public String dimeHora(){
-		if (hora > 0 && hora <= 9){
+		if (hora >= 0 && hora <= 9){
 		return ""+ceroAux+""+hora;
 		}
 		else
 		return ""+hora;
 	}
 	public String dimeMin(){
-		if (min > 0 && min <= 9){
-			return ""+ceroAux+""+hora;
+		if (min >= 0 && min <= 9){
+			return ""+ceroAux+""+min;
 			}
 			else
-			return ""+hora;
+			return ""+min;
 	}
 	public String dimeSeg(){
-		if (seg > 0 && seg <= 9){
+		if (seg >= 0 && seg <= 9){
 			return ""+ceroAux+""+seg;
 			}
 			else
@@ -72,19 +74,31 @@ class Hora {
 		hora+=sumarHora;
 	}
 	public String dimeSumaHora(){
-		return ""+hora;
+		if (hora > 0 && hora <= 9){
+			return ""+ceroAux+""+hora;
+			}
+			else
+			return ""+hora;
 	}
 	public void estableceSumaMin(int sumarMin){
 		min+=sumarMin;
 	}
 	public String dimeSumaMin(){
-		return ""+min;
+		if (min > 0 && min <= 9){
+			return ""+ceroAux+""+min;
+			}
+			else
+			return ""+min;
 	}
 	public void estableceSumaSeg(int sumarSeg){
 		seg+=sumarSeg;
 	}
 	public String dimeSumaSeg(){
-		return ""+seg;
+		if (seg > 0 && seg <= 9){
+			return ""+ceroAux+""+seg;
+			}
+			else
+			return ""+seg;
 	}
 	
 	// RESTA (SE PUEDE REDUCIR A UNO JUNTANDOLOS TODOS, PERO ASÍ ES MÁS DETALLADO)
@@ -92,24 +106,40 @@ class Hora {
 		hora-=restarHora;
 	}
 	public String dimeRestaHora(){
-		return ""+hora;
+		if (hora > 0 && hora <= 9){
+			return ""+ceroAux+""+hora;
+			}
+			else
+			return ""+hora;
 	}
 	public void estableceRestaMin(int restarMin){
 		min-=restarMin;
 	}
 	public String dimeRestaMin(){
-		return ""+min;
+		if (min > 0 && min <= 9){
+			return ""+ceroAux+""+min;
+			}
+			else
+			return ""+min;
 	}
 	public void estableceRestaSeg(int restarSeg){
 		seg-=restarSeg;
 	}
 	public String dimeRestaSeg(){
-		return ""+seg;
+		if (seg > 0 && seg <= 9){
+			return ""+ceroAux+""+seg;
+			}
+			else
+			return ""+seg;
 	}
 	
 	
 	// SUMA TOTAL
 	public String dimeSumaTotal(){
+		if (hora >=0 && hora<= 9){
+			
+		}
+		
 		return ""+hora+":"+min+":"+seg;
 	}
 }
@@ -153,7 +183,7 @@ public class ProgHora2 {
 				break;
 			
 			
-			
+			//SUMA
 			case 3:
 				System.out.println("Escriba la hora que desea sumar");
 				System.out.print("Hora: ");
@@ -162,11 +192,17 @@ public class ProgHora2 {
 				miHora.estableceSumaMin(teclado.nextInt());
 				System.out.print("Segundos: ");
 				miHora.estableceSumaSeg(teclado.nextInt());
-				System.out.println("La hora sumada es: "+miHora.dimeSumaTotal());
 				break;
 			
 			
 			case 4:
+				System.out.println("Escriba la hora que desea sumar");
+				System.out.print("Hora: ");
+				miHora.estableceRestaHora(teclado.nextInt());
+				System.out.print("Minutos: ");
+				miHora.estableceRestaMin(teclado.nextInt());
+				System.out.print("Segundos: ");
+				miHora.estableceRestaSeg(teclado.nextInt());
 				break;
 				
 			case 5:
