@@ -37,12 +37,12 @@ class Array{
 	public void sumaVectores(){
 		for (int i=0; i<vector1.length;i++){
 			vector3[i]=vector1[i]+vector2[i];
-		}
-		for (int i=0;i<vector3.length;i++){
-		System.out.print(vector3[i]+" ");
-		}
+			System.out.print(vector3[i]+" ");
+		}	
 		System.out.println();
 	}
+	
+	
 	
 	public void ordenaVector3(){
 		for (int i=0;i<vector3.length;i++){
@@ -79,6 +79,7 @@ public class Ejercicio2Array {
 		miArray.dimeVector2();
 		System.out.println("La suma de vectores es: ");
 		miArray.sumaVectores();
+		
 		System.out.println("El vector 3 ordenado es: ");
 		miArray.ordenaVector3();
 		miArray.vectorOrdenado();

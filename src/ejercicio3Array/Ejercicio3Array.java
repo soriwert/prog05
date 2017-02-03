@@ -3,7 +3,7 @@ import java.util.*;
 
 class Array3{
 	private int[] vector1;
-	private int almacenMayor, almacenMenor, posicionMenor, posicionMayor;
+	private int almacenMayor=0, almacenMenor=0, posicionMenor=0, posicionMayor=0;
 	private int a,b;
 	
 
@@ -20,30 +20,25 @@ class Array3{
 		for(int i=0; i<vector1.length;i++){
 			vector1[i]=aleatorio.nextInt(a-b+1)+b;
 			System.out.print(vector1[i]+" ");
-		}
-	}
-
-	public void buscaMayor(){
-		for (int i=0; i<vector1.length;i++){
-			for (int j=0; j<vector1.length;j++){
-				if(vector1[i]>vector1[j]){
-					almacenMayor=vector1[i];
-					posicionMayor=(i+1);
-				}
+			if (vector1[i]>almacenMayor){
+				almacenMayor=vector1[i];
+				posicionMayor=(i+1);
 			}
-		} System.out.println("El número mayor es: "+almacenMayor+" y está en la posición: "+posicionMayor);
-	}
-	public void buscaMenor(){
-		for (int i=0; i<vector1.length;i++){
-			for (int j=0; j<vector1.length;j++){
-				if(vector1[i]<vector1[j]){
+			else
+			{
+				if (vector1[i]<almacenMenor){
 					almacenMenor=vector1[i];
 					posicionMenor=(i+1);
 				}
-			}
-		} System.out.println("El número menor es: "+almacenMenor+" y está en la posición: "+posicionMenor);
+			} 
+		}
+		System.out.println();
 	}
-
+	
+	public void ImprimeMayorYMenor(){
+		System.out.println("El valor mayor es: "+almacenMayor+" y su posicion es: "+posicionMayor);
+		System.out.println("El valor menor es: "+almacenMenor+" y su posicion es: "+posicionMenor);
+	}
 }
 
 public class Ejercicio3Array {
@@ -55,9 +50,7 @@ public class Ejercicio3Array {
 		// leyendo valores del vector.
 		System.out.println("Vector 1: ");
 		miArray.valoresVector();
-		miArray.buscaMayor();
-		miArray.buscaMenor();
-		
+		miArray.ImprimeMayorYMenor();
 	}
 
 }
