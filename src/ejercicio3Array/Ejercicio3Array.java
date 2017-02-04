@@ -3,32 +3,48 @@ import java.util.*;
 
 class Array3{
 	private int[] vector1;
-	private int almacenMayor=0, almacenMenor=0, posicionMenor=0, posicionMayor=0;
-	private int a,b;
-	
+	private int mayor, menor, posMenor, posMayor, tamaño, rangoP, rangoN;
+//	private int mitad;
+
 
 	public Array3(){
-		vector1=new int [20];
-		a=100;
-		b=-100;
-		
+		mayor=0;
+		menor=0;
+		posMenor=0;
+		posMayor=0;
+		tamaño=0;
+//		mitad=tamaño;
+
+	}
+	
+	public void dimeTamaño(int tamaño){
+		vector1 = new int[tamaño];
+		this.tamaño=tamaño;
+//		mitad=tamaño;
+	}
+	
+	public void dimeRango (int rangoN, int rangoP){
+		this.rangoP=rangoP;
+		this.rangoN=rangoN;
 	}
 
-	public void valoresVector(){
+	public void imprimeVector(){
 		Random aleatorio = new Random ();
-
 		for(int i=0; i<vector1.length;i++){
-			vector1[i]=aleatorio.nextInt(a-b+1)+b;
+			vector1[i]=aleatorio.nextInt(rangoP-rangoN+1)+rangoN;
 			System.out.print(vector1[i]+" ");
-			if (vector1[i]>almacenMayor){
-				almacenMayor=vector1[i];
-				posicionMayor=(i+1);
+//			if ((i+1)==(mitad/2)){
+//				System.out.println();
+//			}
+			if (vector1[i]>mayor){
+				mayor=vector1[i];
+				posMayor=(i+1);
 			}
 			else
 			{
-				if (vector1[i]<almacenMenor){
-					almacenMenor=vector1[i];
-					posicionMenor=(i+1);
+				if (vector1[i]<menor){
+					menor=vector1[i];
+					posMenor=(i+1);
 				}
 			} 
 		}
@@ -36,8 +52,8 @@ class Array3{
 	}
 	
 	public void ImprimeMayorYMenor(){
-		System.out.println("El valor mayor es: "+almacenMayor+" y su posicion es: "+posicionMayor);
-		System.out.println("El valor menor es: "+almacenMenor+" y su posicion es: "+posicionMenor);
+		System.out.println("El valor mayor es: "+mayor+" y su posicion es: "+posMayor);
+		System.out.println("El valor menor es: "+menor+" y su posicion es: "+posMenor);
 	}
 }
 
@@ -46,10 +62,16 @@ public class Ejercicio3Array {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Array3 miArray = new Array3 ();
+		Scanner teclado = new Scanner (System.in);
+		
 		
 		// leyendo valores del vector.
+		System.out.println("Establece el tamaño del vector: ");
+		miArray.dimeTamaño(teclado.nextInt());
+		System.out.println("Establece el rango NEGATIVO y POSITIVO");
+		miArray.dimeRango(teclado.nextInt(),teclado.nextInt());
 		System.out.println("Vector 1: ");
-		miArray.valoresVector();
+		miArray.imprimeVector();
 		miArray.ImprimeMayorYMenor();
 	}
 
