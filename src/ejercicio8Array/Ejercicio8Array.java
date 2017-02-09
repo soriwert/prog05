@@ -23,7 +23,7 @@ class Asignatura{
 		media=0F;
 	}
 	
-	public void generaMatriz(){
+	public void generaMatriz(int opcion){
 		Random aleatorio=new Random ();
 		for (int i=0; i<aluasi.length;i++){
 			System.out.println("Alumno "+(i+1));
@@ -36,8 +36,8 @@ class Asignatura{
 	}
 
 	public void calculaMedia(int opcion, int opcion2){
-		this.opcion=opcion;
-		this.opcion2=opcion2;
+		System.out.println("¿De qué desea calcular la media?\n1. Asignatura\n2. Alumno");
+		opcion=teclado.nextInt();
 		if (opcion==1){
 			System.out.println("¿que numero de "+asignatura+" desea calcular?");
 			opcion2=teclado.nextInt();
@@ -84,15 +84,11 @@ public class Ejercicio8Array {
 		// TODO Auto-generated method stub
 		Scanner teclado = new Scanner (System.in);
 		Asignatura miArray=new Asignatura();
-		int opcion;
-		int opcion2=0;
+		int opcion=0;
+		int numero=0;
 		
-		int numero;
-		
-		miArray.generaMatriz();
-		System.out.println("¿De qué desea calcular la media?\n1. Asignatura\n2. Alumno");
-		numero=teclado.nextInt();
-		miArray.calculaMedia(numero, opcion2);
+		miArray.generaMatriz(numero);
+		miArray.calculaMedia(numero, opcion);
 		
 	}
 
