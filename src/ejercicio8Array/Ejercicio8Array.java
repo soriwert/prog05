@@ -3,18 +3,24 @@ package ejercicio8Array;
 import java.util.*;
 
 class Asignatura{
+	Scanner teclado = new Scanner (System.in);
 	private int [][]aluasi;
-	private int [] notas;
-	private int rangoP, rangoN, almacen, opcion, opcion2, media;
+	private int rangoP, rangoN, opcion, opcion2;
+	private float media, almacen;
+	private String asignatura;
+	private String alumno;
 	
 	
 	public Asignatura(){
 		aluasi=new int [10][10];
 		rangoP=10;
 		rangoN=1;
-		almacen=0;
+		almacen=0F;
 		opcion=0;
 		opcion2=0;
+		asignatura="Asignatura";
+		alumno="Alumno";
+		media=0F;
 	}
 	
 	public void generaMatriz(){
@@ -33,27 +39,43 @@ class Asignatura{
 		this.opcion=opcion;
 		this.opcion2=opcion2;
 		if (opcion==1){
-			for (int i=opcion2; i==opcion2;i++){
+			System.out.println("¿que numero de "+asignatura+" desea calcular?");
+			opcion2=teclado.nextInt();
+			for (int i=opcion2-1; i==opcion2-1;i++){
+				System.out.println("numeros: ");
 				for (int j=0;j<aluasi.length;j++){
+					System.out.print(aluasi[i][j]+" ");
 					almacen+=aluasi[i][j];
+					System.out.println(almacen);
 				}
+				System.out.println();
 				media=almacen/aluasi.length;
 			}
-			System.out.println(media);
+			System.out.println("la media es: "+media);
 		}
 		else if (opcion==2){
-			for (int j=opcion2;j==opcion2;j++){
-				for (int i=0; i<aluasi.length;i++){
 
+			System.out.println("¿que numero de "+alumno+" desea calcular?");
+			opcion2=teclado.nextInt();
+			for (int j=opcion2-1;j==opcion2-1;j++){
+				System.out.println("numeros: ");
+				for (int i=0; i<aluasi.length;i++){
+					System.out.print(aluasi[j][i]+" ");
 					almacen+=aluasi[j][i];
 				}
+				System.out.println();
 				media=almacen/aluasi.length;
 			}
-			System.out.println(media);
+			System.out.println("la media es: "+media);
 		}
+		
+		else 
+			System.out.println("Error de parametros introducidos");
+			return;
 
 
 	}
+	
 }
 
 public class Ejercicio8Array {
@@ -63,25 +85,14 @@ public class Ejercicio8Array {
 		Scanner teclado = new Scanner (System.in);
 		Asignatura miArray=new Asignatura();
 		int opcion;
-		int opcion2;
-		String tipo1="Asignatura";
-		String tipo2="Alumno";
+		int opcion2=0;
+		
 		int numero;
 		
 		miArray.generaMatriz();
 		System.out.println("¿De qué desea calcular la media?\n1. Asignatura\n2. Alumno");
-		opcion=teclado.nextInt();
-		if (opcion==1){
-			System.out.println("¿que numero de "+tipo1+" desea calcular");
-			numero=teclado.nextInt();
-			miArray.calculaMedia(opcion, numero);
-		}
-		else if (opcion==2){
-			System.out.println("¿que numero de "+tipo2+" desea calcular");
-			numero=teclado.nextInt();
-			miArray.calculaMedia(opcion, numero);
-		}
-		
+		numero=teclado.nextInt();
+		miArray.calculaMedia(numero, opcion2);
 		
 	}
 
